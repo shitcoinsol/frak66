@@ -16,16 +16,27 @@
       overflow-x: hidden;
     }
 
-    .audio-control {
+    .audio-btn {
       position: fixed;
       top: 20px;
       right: 20px;
       width: 50px;
       height: 50px;
       cursor: pointer;
-      z-index: 1000;
+      z-index: 9999;
       filter: drop-shadow(0 0 4px #4a3820);
       transition: opacity 0.3s ease;
+    }
+
+    .frak-logo {
+      display: block;
+      margin: 30px auto 10px;
+      width: 180px;
+      transition: transform 0.3s ease;
+    }
+
+    .frak-logo:hover {
+      transform: scale(1.05);
     }
 
     .gallery {
@@ -72,6 +83,15 @@
       font-family: 'Courier New', monospace;
     }
 
+    .custom-token-box {
+      background-color: #e1c49c;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
     .token-info h2 {
       margin-top: 0;
       font-size: 1.8rem;
@@ -91,6 +111,12 @@
 
     .copy-btn:hover {
       background: rgba(255, 230, 180, 0.2);
+    }
+
+    .ca-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
     @media (max-width: 768px) {
@@ -160,14 +186,19 @@
 }
 </style>
 </head>
-<body><img alt="Frak Logo" src="frak-logo.png" style="display:block; margin:30px auto 10px; width: 180px;"/><img alt="Frak Portrait" class="header-image reveal" src="file-9QEUnJmsxxo4gT39mrgCDf" style="display: block; margin: 60px auto; max-width: 700px; border: 6px solid #8a6c3e; border-radius: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);"/>
-<div class="token-info"><img alt="Token Info Card" src="token-info-card.png"/>
+<body>
+<audio id="bg-music" src="Frak.mp3" autoplay></audio>
+<img id="play-button" class="audio-btn" src="play_button.png" style="display:none;"/>
+<img id="pause-button" class="audio-btn" src="pause_button.png"/>
+<img alt="Frak Logo" class="frak-logo" src="frak-logo.png"/>
+<img alt="Frak Portrait" class="header-image reveal" src="file-9QEUnJmsxxo4gT39mrgCDf" style="display: block; margin: 60px auto; max-width: 700px; border: 6px solid #8a6c3e; border-radius: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);"/>
+<div class="token-info custom-token-box"><img alt="Token Info Card" src="token-info-card.png"/>
 <h2>Token Info</h2>
 <p><strong>Name:</strong> Frak</p>
 <p><strong>Ticker:</strong> FRAK</p>
 <p><strong>Chain:</strong> Solana</p>
 <p><strong>Supply:</strong> 1,000,000,000</p>
-<p>
+<p class="ca-line">
 <strong>CA:</strong>
 <span id="ca-text">So1anaFakeAddress123456789</span>
 <button class="copy-btn" onclick="copyCA()">Copy</button>
@@ -196,18 +227,23 @@
 <div class="card"><img download="" src="gallery20.png"/><a class="download-btn" download="True" href="gallery20.png">Download</a></div>
 </div>
 <script>
-    const audio = document.getElementById('frak-audio');
-    const toggle = document.getElementById('audioToggle');
+    const audio = document.getElementById("bg-music");
+    const playBtn = document.getElementById("play-button");
+    const pauseBtn = document.getElementById("pause-button");
 
-    toggle.addEventListener('click', () => {
+    function updateButtons() {
       if (audio.paused) {
-        audio.play();
-        toggle.src = 'file-BTpivFNs4irN5HNt3Ht3y3'; // Pause icon
+        playBtn.style.display = "block";
+        pauseBtn.style.display = "none";
       } else {
-        audio.pause();
-        toggle.src = 'file-XPHXPmLuJtDHTi8fooYYyB'; // Play icon
+        playBtn.style.display = "none";
+        pauseBtn.style.display = "block";
       }
-    });
+    }
+
+    playBtn.onclick = () => { audio.play(); updateButtons(); };
+    pauseBtn.onclick = () => { audio.pause(); updateButtons(); };
+    window.addEventListener("load", updateButtons);
 
     function copyCA() {
       const text = document.getElementById("ca-text").innerText;
