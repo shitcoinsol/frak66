@@ -9,7 +9,12 @@
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom, #f5e7d0, #e3c9a2);
+      background: url('background.png') center center / cover no-repeat fixed;
+img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
       display: flex;
       align-items: center;
       justify-content: center;
@@ -41,7 +46,7 @@
     }
   </style>
 </head>
-<body style="background: linear-gradient(to bottom, #f5e7d0, #e3c9a2); transition: opacity 1s;">
+<body style="background: url('background.png') center center / cover no-repeat fixed; transition: opacity 1s;">
   <div class="loading-wrapper">
     <img src="loading_image.png" alt="Loading...">
   </div>
