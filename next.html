@@ -70,17 +70,26 @@
     }
 
     .token-info {
-      max-width: 1000px;
-      background-image: url('file-000000006c2061f79144ae2468ff325a');
-      background-size: cover;
-      background-position: center;
-      color: #f4ead3;
-      padding: 30px;
-      border-radius: 16px;
+      position: relative;
       max-width: 800px;
       margin: 60px auto;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
       font-family: 'Courier New', monospace;
+      color: #f4ead3;
+    }
+    .token-info img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .token-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      text-align: center;
+      font-family: monospace;
     }
 
     .custom-token-box {
@@ -147,13 +156,13 @@
     display: block;
   }
   .token-text {
-    position: absolute !important;
-    top: 20%;
-    left: 8%;
-    transform: translateY(-50%);
+      position: absolute !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 80%;
     font-size: 1rem;
-    text-align: left;
+    text-align: center;
     z-index: 2;
   }
 }
@@ -192,18 +201,18 @@
 <img id="pause-button" class="audio-btn" src="pause_button.png"/>
 <img alt="Frak Logo" class="frak-logo" src="frak-logo.png"/>
 <img alt="Frak Portrait" class="header-image reveal" src="file-9QEUnJmsxxo4gT39mrgCDf" style="display: block; margin: 60px auto; max-width: 700px; border: 6px solid #8a6c3e; border-radius: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);"/>
-<div class="token-info custom-token-box"><img alt="Token Info Card" src="token-info-card.png"/>
-<h2>Token Info</h2>
-<p><strong>Name:</strong> Frak</p>
-<p><strong>Ticker:</strong> FRAK</p>
-<p><strong>Chain:</strong> Solana</p>
-<p><strong>Supply:</strong> 1,000,000,000</p>
-<p class="ca-line">
-<strong>CA:</strong>
-<span id="ca-text">So1anaFakeAddress123456789</span>
-<button class="copy-btn" onclick="copyCA()">Copy</button>
-</p>
-</div><div class="token-buttons" style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;"><a href="https://x.com/frakwtf" target="_blank"><img alt="X Button" src="btn-x.png" style="width: 120px;"/></a><a href="https://pump.fun" target="_blank"><img alt="Buy Button" src="btn-buy.png" style="width: 120px;"/></a></div>
+<div class="token-info">
+  <img alt="Token Info Card" src="token-info-card.png"/>
+  <div class="token-text">
+    <h2>Token Info</h2>
+    <p><strong>Name:</strong> Frak</p>
+    <p><strong>Ticker:</strong> FRAK</p>
+    <p><strong>Chain:</strong> Solana</p>
+    <p><strong>Supply:</strong> 1,000,000,000</p>
+    <p class="ca-line"><strong>CA:</strong> <span id="ca-text">So1anaFakeAddress123456789</span> <button class="copy-btn" onclick="copyCA()">Copy</button></p>
+  </div>
+</div>
+<div class="token-buttons" style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;"><a href="https://x.com/frakwtf" target="_blank"><img alt="X Button" src="btn-x.png" style="width: 120px;"/></a><a href="https://pump.fun" target="_blank"><img alt="Buy Button" src="btn-buy.png" style="width: 120px;"/></a></div>
 <div class="gallery-title reveal" style="text-align: center; font-size: 1.6rem; font-weight: bold; margin: 60px auto 20px;">Frak Gallery</div><div class="gallery">
 <div class="card"><img download="" src="gallery1.png"/><a class="download-btn" download="True" href="gallery1.png">Download</a></div>
 <div class="card"><img download="" src="gallery2.png"/><a class="download-btn" download="True" href="gallery2.png">Download</a></div>
