@@ -13,6 +13,11 @@
       color: #e2d8c3;
       font-family: 'Courier New', monospace;
       overflow-x: hidden;
+      opacity: 0; /* ? 페이드인 시작 상태 */
+      transition: opacity 1s ease; /* ? 페이드인 트랜지션 */
+    }
+    body.fade-in {
+      opacity: 1; /* ? 페이드인 완료 상태 */
     }
     .audio-btn {
       position: fixed;
@@ -82,7 +87,7 @@
       max-width: 800px;
       margin: 60px auto;
       font-family: 'Courier New', monospace;
-      color: #f4ead3;
+      color: #4b2f1c;
     }
     .token-info img {
       width: 100%;
@@ -101,7 +106,7 @@
     .copy-btn {
       background: rgba(255, 230, 180, 0.1);
       border: 1px solid #e2d8c3;
-      color: #e2d8c3;
+      color: #4b2f1c;
       padding: 6px 10px;
       margin-left: 10px;
       cursor: pointer;
@@ -139,11 +144,12 @@
   </style>
 </head>
 <body>
+
 <audio id="bg-music" src="Frak.mp3" autoplay></audio>
 <img id="play-button" class="audio-btn" src="play_button.png" style="display:none;"/>
 <img id="pause-button" class="audio-btn" src="pause_button.png"/>
 <img alt="Frak Logo" class="frak-logo" src="frak-logo.png"/>
-<img alt="Frak Portrait" class="header-image reveal" src="file-9QEUnJmsxxo4gT39mrgCDf" style="display: block; margin: 60px auto; max-width: 700px; border: 6px solid #8a6c3e; border-radius: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);"/>
+<img alt="Frak Portrait" class="header-image reveal" src="file-9QEUnJmsxxo4gT39mrgCDf.png" style="display: block; margin: 60px auto; max-width: 400px; "/>
 <div class="token-info">
 <img alt="Token Info Card" src="02008f06-80ec-4708-876f-45c3a00e4328.png" style="width: 90%; max-width: 700px; display: block; margin: 0 auto;"/>
   <div class="token-text" id="token-text"></div>
@@ -252,6 +258,11 @@
   }
 
   typeLine();
+
+  // ? 페이지 로드 시 페이드인
+  window.addEventListener("load", () => {
+    document.body.classList.add("fade-in");
+  });
 </script>
 </body>
 </html>
