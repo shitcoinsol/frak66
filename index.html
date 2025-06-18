@@ -31,7 +31,7 @@
     }
     .typewriter {
       font-size: 1.25rem;
-      max-width: 90vw;
+      max-width: 40vw;
       text-align: center;
     }
     .line {
@@ -53,24 +53,22 @@
       position: absolute;
       top: 70%;
       left: 50%;
-      transform: translateX(-50%) scale(1);
-      margin-top: 70px;
+      transform: translateX(-50%);
+
+      margin-top: 50px;
       width: 180px;
       cursor: pointer;
       transition: transform 0.3s ease;
       display: block;
     }
     .enter-image:hover {
-      transform: translateX(-50%) scale(1.05);
-      filter: none;
-    }
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
     img:hover {
       transform: scale(1.05);
       filter: brightness(1.2);
       transition: transform 0.3s ease, filter 0.3s ease;
-    }
-    img.enter-image:hover {
-      filter: none;
     }
     .fade-out {
       animation: fadeOut 0.5s ease forwards;
@@ -80,28 +78,31 @@
     }
     @media (max-width: 600px) {
       .typewriter {
+        display: none;
+      }
+      .typewriter {
         font-size: 1rem;
         line-height: 1.5;
       }
       .enter-image {
-        position: absolute;
-        top: 70%;
-        left: 50%;
-        transform: translateX(-50%) scale(1);
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      transform: translateX(-50%);
+
         width: 140px;
-        margin-top: 60px;
-      }
-      .enter-image:hover {
-        transform: translateX(-50%) scale(1.05);
+        margin-top: 40px;
       }
     }
   </style>
-</head>
+</head><link rel="stylesheet" href="style.css">
+
 <body>
-<img alt="frak logo" class="logo" src="frak-logo.png" style="position:absolute; top:30px; left:50%; transform:translateX(-50%);"/>
+<img alt="frak logo" class="logo" src="frak-logo.png" style="position:absolute; top:20px; left:50%; transform:translateX(-50%);"/>
 <div class="typewriter" id="typewriter" style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); text-align: center;"><span id="typing-text"></span></div>
-<img alt="Frak pointing" class="frak-pointer" src="frak-pointing-down.png" style="width: 2* 90px; margin: 60px auto -20px; display: block;"/>
-<img alt="Enter" class="enter-image" id="enterBtn" src="enter-button.png" onclick="goToLoading()">
+<img alt="Frak pointing" class="frak-pointer" src="frak-pointing-down.png" style="width: 2* 1
+0px; margin: 90px auto -20px; display: block; top: 320px;"/>
+<img<img alt="Enter" class="enter-image" id="enterBtn" src="enter-button.png" onclick="goToLoading()" onclick="goToLoading()" style="position: absolute; top: 200px;" onclick="goToLoading()">
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const target = document.getElementById("typing-text");
@@ -144,5 +145,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.style.opacity = "1";
   };
 </script>
+
 </body>
 </html>
