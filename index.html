@@ -51,20 +51,18 @@
     }
     .enter-image {
       position: absolute;
-      top: 70%;
+      top: 750px; /* ? frak-pointing 아래로 조정 */
       left: 50%;
       transform: translateX(-50%);
-
-      margin-top: 50px;
       width: 180px;
       cursor: pointer;
       transition: transform 0.3s ease;
       display: block;
     }
     .enter-image:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s ease;
-}
+      transform: translateX(-50%) scale(1.05); /* ? 중심 유지하면서 스케일 */
+      transition: transform 0.3s ease;
+    }
     img:hover {
       transform: scale(1.05);
       filter: brightness(1.2);
@@ -85,13 +83,12 @@
         line-height: 1.5;
       }
       .enter-image {
-      position: absolute;
-      top: 70%;
-      left: 50%;
-      transform: translateX(-50%);
-
+        position: absolute;
+        top: 460px; /* ? 모바일에서도 더 아래로 */
+        left: 50%;
+        transform: translateX(-50%);
         width: 140px;
-        margin-top: 40px;
+        margin-top: 0;
       }
     }
   </style>
@@ -102,7 +99,7 @@
 <div class="typewriter" id="typewriter" style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); text-align: center;"><span id="typing-text"></span></div>
 <img alt="Frak pointing" class="frak-pointer" src="frak-pointing-down.png" style="width: 2* 1
 0px; margin: 90px auto -20px; display: block; top: 320px;"/>
-<img<img alt="Enter" class="enter-image" id="enterBtn" src="enter-button.png" onclick="goToLoading()" onclick="goToLoading()" style="position: absolute; top: 200px;" onclick="goToLoading()">
+<img alt="Enter" class="enter-image" id="enterBtn" src="enter-button.png" onclick="goToLoading()" />
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const target = document.getElementById("typing-text");
@@ -131,7 +128,6 @@ document.addEventListener("DOMContentLoaded", function () {
   typeLine(0);
 });
 </script>
-</img>
 <script>
   function goToLoading() {
     document.body.style.opacity = '0';
