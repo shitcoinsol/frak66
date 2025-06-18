@@ -16,11 +16,6 @@
       overflow-x: hidden;
     }
 
-img:hover {
-  transform: scale(1.05);
-  filter: brightness(1.2);
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
     .audio-control {
       position: fixed;
       top: 20px;
@@ -35,70 +30,138 @@ img:hover {
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 20px;
-      padding: 20px;
-      justify-items: center;
+      padding: 100px 40px 40px;
+      max-width: 1400px;
+      margin: 0 auto;
     }
-    .gallery-item {
-      position: relative;
+
+    .card {
+      backdrop-filter: blur(12px);
+      background: rgba(90, 75, 50, 0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 236, 210, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .gallery-item img {
+
+    .card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .card img {
       width: 100%;
-      border-radius: 8px;
-    }
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
+      display: block;
+      cursor: pointer;
     }
 
+    .token-info {
+      max-width: 1000px;
+      background-image: url('file-000000006c2061f79144ae2468ff325a');
+      background-size: cover;
+      background-position: center;
+      color: #f4ead3;
+      padding: 30px;
+      border-radius: 16px;
+      max-width: 800px;
+      margin: 60px auto;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+      font-family: 'Courier New', monospace;
+    }
 
-    .gallery-item {
+    .token-info h2 {
+      margin-top: 0;
+      font-size: 1.8rem;
+    }
+
+    .copy-btn {
+      background: rgba(255, 230, 180, 0.1);
+      border: 1px solid #e2d8c3;
+      color: #e2d8c3;
+      padding: 6px 10px;
+      margin-left: 10px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    .copy-btn:hover {
+      background: rgba(255, 230, 180, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .gallery {
+        padding: 80px 20px;
+      }
+
+      .token-info {
+      max-width: 1000px;
+        padding: 20px;
+      }
+    }
+  
+@media (max-width: 768px) {
+  .token-info {
+      max-width: 1000px;
+    position: relative !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 40px auto;
+  }
+  .token-info img {
+      max-width: none;
+      width: 100%;
+      height: auto;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .token-text {
+    position: absolute !important;
+    top: 20%;
+    left: 8%;
+    transform: translateY(-50%);
+    width: 80%;
+    font-size: 1rem;
+    text-align: left;
+    z-index: 2;
+  }
+}
+
+    .card {
       position: relative;
     }
     .download-btn {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.7);
+      bottom: 8px;
+      right: 8px;
+      background: rgba(0, 0, 0, 0.6);
       color: #fff;
-      padding: 6px 12px;
-      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 0.75rem;
+      text-decoration: none;
+      border-radius: 4px;
       opacity: 0;
       transition: opacity 0.3s ease;
-      text-decoration: none;
     }
-    .gallery-item:hover .download-btn {
+    .card:hover .download-btn {
       opacity: 1;
     }
 
 @media (max-width: 768px) {
   .gallery {
     grid-template-columns: repeat(2, 1fr);
+    padding: 0 20px 40px;
   }
 }
 </style>
-
-<style>
-  .custom-token-box {
-    background: #dbc6a4;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 14px;
-    padding: 15px 20px;
-    max-width: 320px;
-    margin: 20px auto;
-    text-align: center;
-  }
-
 </head>
 <body><img alt="Frak Logo" src="frak-logo.png" style="display:block; margin:30px auto 10px; width: 180px;"/><img alt="Frak Portrait" class="header-image reveal" src="file-9QEUnJmsxxo4gT39mrgCDf" style="display: block; margin: 60px auto; max-width: 700px; border: 6px solid #8a6c3e; border-radius: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);"/>
-<div class="custom-token-box">
+<div class="token-info"><img alt="Token Info Card" src="token-info-card.png"/>
 <h2>Token Info</h2>
 <p><strong>Name:</strong> Frak</p>
 <p><strong>Ticker:</strong> FRAK</p>
@@ -106,138 +169,68 @@ img:hover {
 <p><strong>Supply:</strong> 1,000,000,000</p>
 <p>
 <strong>CA:</strong>
-<span style="display: inline-flex; align-items: center;">
-  <span id="ca-text">So1anaFakeAddress123456789</span>
-  <button onclick="copyCA()" style="margin-left: 8px;">Copy</button>
-</span>
+<span id="ca-text">So1anaFakeAddress123456789</span>
+<button class="copy-btn" onclick="copyCA()">Copy</button>
 </p>
-</div><div class="token-buttons" style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;"><a href="https://x.com/frakwtf" target="_blank"><img alt="X Button" src="btn-x.png" style="width: 120px; cursor: pointer;"/></a><a href="https://pump.fun" target="_blank"><img alt="Buy Button" src="btn-buy.png" style="width: 120px; cursor: pointer;"/></a></div><div class="gallery-title reveal" style="text-align: center; font-size: 1.6rem; font-weight: bold; margin: 60px auto 20px;">Frak Gallery</div><div class="gallery">
-<div class="gallery-item reveal"><img src="gallery1.png"/><a class="download-btn" href="gallery1.png">⬇</a></div>
-<div class="gallery-item reveal"><img src="gallery2.png"/><a class="download-btn" href="gallery2.png">⬇</a></div>
-<div class="gallery-item reveal"><img src="gallery3.png"/><a class="download-btn" href="gallery3.png">⬇</a></div>
-<div class="gallery-item reveal"><img src="gallery4.png"/><a class="download-btn" href="gallery4.png">⬇</a></div>
-<div class="gallery-item reveal"><img src="gallery5.png"/><a class="download-btn" href="gallery5.png">⬇</a></div>
-<div class="gallery-item reveal"><img src="gallery6.png"/><a class="download-btn" href="gallery6.png">⬇</a></div>
-<div class="gallery-item reveal"><img src="gallery7.png"/><a class="download-btn" href="gallery7.png">⬇</a></div>
-<div class="gallery-item reveal"><img src="gallery8.png"/><a class="download-btn" href="gallery8.png">⬇</a></div>
-<div class="gallery-item reveal"><img src="gallery9.png"/><a class="download-btn" href="gallery9.png">⬇</a></div>
-<div class="gallery-item reveal"><img src="gallery10.png"/><a class="download-btn" href="gallery10.png">⬇</a></div>
-<div class="gallery-item reveal"><img src="gallery11.png"/><a class="download-btn" href="gallery11.png">⬇</a></div>
-<div class="gallery-item reveal"><img src="gallery12.png"/><a class="download-btn" href="gallery12.png">⬇</a></div>
-<div class="gallery-item reveal"><img src="gallery13.png"/><a class="download-btn" href="gallery13.png">⬇</a></div>
-<div class="gallery-item reveal"><img src="gallery14.png"/><a class="download-btn" href="gallery14.png">⬇</a></div>
-<div class="gallery-item reveal"><img src="gallery15.png"/><a class="download-btn" href="gallery15.png">⬇</a></div>
-<div class="gallery-item reveal"><img src="gallery16.png"/><a class="download-btn" href="gallery16.png">⬇</a></div>
-<div class="gallery-item reveal"><img src="gallery17.png"/><a class="download-btn" href="gallery17.png">⬇</a></div>
-<div class="gallery-item reveal"><img src="gallery18.png"/><a class="download-btn" href="gallery18.png">⬇</a></div>
-<div class="gallery-item reveal"><img src="gallery19.png"/><a class="download-btn" href="gallery19.png">⬇</a></div>
-<div class="gallery-item reveal"><img src="gallery20.png"/><a class="download-btn" href="gallery20.png">⬇</a></div>
+</div><div class="token-buttons" style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;"><a href="https://x.com/frakwtf" target="_blank"><img alt="X Button" src="btn-x.png" style="width: 120px;"/></a><a href="https://pump.fun" target="_blank"><img alt="Buy Button" src="btn-buy.png" style="width: 120px;"/></a></div><img alt="Pause" class="audio-control" id="audioToggle" src="file-BTpivFNs4irN5HNt3Ht3y3"/>
+<audio autoplay="" id="frak-audio" loop="" src="Frak.mp3"></audio>
+<div class="gallery-title reveal" style="text-align: center; font-size: 1.6rem; font-weight: bold; margin: 60px auto 20px;">Frak Gallery</div><div class="gallery">
+<div class="card"><img download="" src="gallery1.png"/><a class="download-btn" download="True" href="gallery1.png">Download</a></div>
+<div class="card"><img download="" src="gallery2.png"/><a class="download-btn" download="True" href="gallery2.png">Download</a></div>
+<div class="card"><img download="" src="gallery3.png"/><a class="download-btn" download="True" href="gallery3.png">Download</a></div>
+<div class="card"><img download="" src="gallery4.png"/><a class="download-btn" download="True" href="gallery4.png">Download</a></div>
+<div class="card"><img download="" src="gallery5.png"/><a class="download-btn" download="True" href="gallery5.png">Download</a></div>
+<div class="card"><img download="" src="gallery6.png"/><a class="download-btn" download="True" href="gallery6.png">Download</a></div>
+<div class="card"><img download="" src="gallery7.png"/><a class="download-btn" download="True" href="gallery7.png">Download</a></div>
+<div class="card"><img download="" src="gallery8.png"/><a class="download-btn" download="True" href="gallery8.png">Download</a></div>
+<div class="card"><img download="" src="gallery9.png"/><a class="download-btn" download="True" href="gallery9.png">Download</a></div>
+<div class="card"><img download="" src="gallery10.png"/><a class="download-btn" download="True" href="gallery10.png">Download</a></div>
+<div class="card"><img download="" src="gallery11.png"/><a class="download-btn" download="True" href="gallery11.png">Download</a></div>
+<div class="card"><img download="" src="gallery12.png"/><a class="download-btn" download="True" href="gallery12.png">Download</a></div>
+<div class="card"><img download="" src="gallery13.png"/><a class="download-btn" download="True" href="gallery13.png">Download</a></div>
+<div class="card"><img download="" src="gallery14.png"/><a class="download-btn" download="True" href="gallery14.png">Download</a></div>
+<div class="card"><img download="" src="gallery15.png"/><a class="download-btn" download="True" href="gallery15.png">Download</a></div>
+<div class="card"><img download="" src="gallery16.png"/><a class="download-btn" download="True" href="gallery16.png">Download</a></div>
+<div class="card"><img download="" src="gallery17.png"/><a class="download-btn" download="True" href="gallery17.png">Download</a></div>
+<div class="card"><img download="" src="gallery18.png"/><a class="download-btn" download="True" href="gallery18.png">Download</a></div>
+<div class="card"><img download="" src="gallery19.png"/><a class="download-btn" download="True" href="gallery19.png">Download</a></div>
+<div class="card"><img download="" src="gallery20.png"/><a class="download-btn" download="True" href="gallery20.png">Download</a></div>
 </div>
-
-
-<audio id="bg-music" src="Frak.mp3"></audio>
 <script>
-function copyCA() {
-  const ca = document.getElementById("ca-text").innerText;
-  navigator.clipboard.writeText(ca).then(() => {
-    alert("CA copied to clipboard!");
-  });
-}
-  window.addEventListener("DOMContentLoaded", function () {
-    var audio = document.getElementById("bg-music");
-    setTimeout(() => {
-      audio.play().catch(err => { console.log('Autoplay failed:', err); });
-    }, 1000);
-  });
-</script>
+    const audio = document.getElementById('frak-audio');
+    const toggle = document.getElementById('audioToggle');
 
-
-<style>
-  .audio-controls {
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
-    z-index: 9999;
-  }
-  .audio-controls img {
-    width: 48px;
-    height: 48px;
-    cursor: pointer;
-    display: none;
-  }
-</style>
-
-
-
-<style>
-  .audio-controls {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 9999;
-  }
-  .audio-controls img {
-    width: 42px;
-    height: 42px;
-    cursor: pointer;
-    display: none;
-  }
-</style>
-<div class="audio-controls">
-  <img id="pauseBtn" src="pause_button.png" alt="Pause" />
-  <img id="playBtn" src="play_button.png" alt="Play" />
-</div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const audio = document.getElementById("bg-music");
-    const pauseBtn = document.getElementById("pauseBtn");
-    const playBtn = document.getElementById("playBtn");
-
-    function updateButtons() {
+    toggle.addEventListener('click', () => {
       if (audio.paused) {
-        playBtn.style.display = "block";
-        pauseBtn.style.display = "none";
+        audio.play();
+        toggle.src = 'file-BTpivFNs4irN5HNt3Ht3y3'; // Pause icon
       } else {
-        playBtn.style.display = "none";
-        pauseBtn.style.display = "block";
+        audio.pause();
+        toggle.src = 'file-XPHXPmLuJtDHTi8fooYYyB'; // Play icon
       }
-    }
-
-    pauseBtn.addEventListener("click", function () {
-      audio.pause();
-      updateButtons();
     });
 
-    playBtn.addEventListener("click", function () {
-      audio.play().catch(() => {});
-      updateButtons();
-    });
-
-    document.body.addEventListener("click", () => {
-      audio.play().catch(() => {});
-    }, { once: true });
-
-    setTimeout(() => {
-      audio.play().catch(() => {});
-    }, 800);
-
-    audio.addEventListener("play", updateButtons);
-    audio.addEventListener("pause", updateButtons);
-
-    updateButtons();
-  });
-</script>
-<script>
-window.addEventListener("scroll", () => {
-  document.querySelectorAll(".reveal").forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 50) {
-      el.classList.add("visible");
+    function copyCA() {
+      const text = document.getElementById("ca-text").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Contract address copied!");
+      });
+    }
+  
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
     }
   });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+document.querySelectorAll('.card').forEach((card, i) => {
+  card.classList.add('reveal');
+  card.style.transitionDelay = `${i * 80}ms`;
+  observer.observe(card);
 });
 </script>
-
 </body>
 </html>
