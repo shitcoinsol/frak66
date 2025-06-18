@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -7,99 +6,99 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="favicon.png" rel="icon" type="image/png"/>
 <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: url('background.png') center center / cover no-repeat fixed;
-      color: #e2d8c3;
-      font-family: 'Courier New', monospace;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      overflow: hidden;
-      cursor: url('frak-cursor.png'), auto;
-    }
-    .logo {
-      width: 240px;
-      position: absolute;
-      top: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      filter: drop-shadow(0 0 4px #4a3820);
+  body {
+    margin: 0;
+    padding: 0;
+    background: url('background.png') center center / cover no-repeat fixed;
+    color: #e2d8c3;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    cursor: url('frak-cursor.png'), auto;
+  }
+  .logo {
+    width: 240px;
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 0 4px #4a3820);
+  }
+  .typewriter {
+    font-size: 1.25rem;
+    max-width: 40vw;
+    text-align: center;
+  }
+  .line {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #e2d8c3;
+    width: 0;
+    visibility: hidden;
+  }
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  @keyframes blink {
+    50% { border-color: transparent; }
+  }
+  .enter-image {
+    position: relative;
+    margin-top: 40px;
+    width: 180px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: block;
+  }
+  .enter-image:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
+  img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  .fade-out {
+    animation: fadeOut 0.5s ease forwards;
+  }
+  @keyframes fadeOut {
+    to { opacity: 0; }
+  }
+  @media (max-width: 600px) {
+    .typewriter {
+      display: none;
     }
     .typewriter {
-      font-size: 1.25rem;
-      max-width: 40vw;
-      text-align: center;
-    }
-    .line {
-      display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 2px solid #e2d8c3;
-      width: 0;
-      visibility: hidden;
-    }
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-    @keyframes blink {
-      50% { border-color: transparent; }
+      font-size: 1rem;
+      line-height: 1.5;
     }
     .enter-image {
-      position: absolute;
-      top: 750px; /* ? frak-pointing 아래로 조정 */
-      left: 50%;
-      transform: translateX(-50%);
-      width: 180px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      display: block;
+      margin-top: 30px;
+      width: 140px;
     }
-    .enter-image:hover {
-      transform: translateX(-50%) scale(1.05); /* ? 중심 유지하면서 스케일 */
-      transition: transform 0.3s ease;
-    }
-    img:hover {
-      transform: scale(1.05);
-      filter: brightness(1.2);
-      transition: transform 0.3s ease, filter 0.3s ease;
-    }
-    .fade-out {
-      animation: fadeOut 0.5s ease forwards;
-    }
-    @keyframes fadeOut {
-      to { opacity: 0; }
-    }
-    @media (max-width: 600px) {
-      .typewriter {
-        display: none;
-      }
-      .typewriter {
-        font-size: 1rem;
-        line-height: 1.5;
-      }
-      .enter-image {
-        position: absolute;
-        top: 460px; /* ? 모바일에서도 더 아래로 */
-        left: 50%;
-        transform: translateX(-50%);
-        width: 140px;
-        margin-top: 0;
-      }
-    }
-  </style>
-</head><link rel="stylesheet" href="style.css">
-
+  }
+</style>
+</head>
 <body>
+
 <img alt="frak logo" class="logo" src="frak-logo.png" style="position:absolute; top:20px; left:50%; transform:translateX(-50%);"/>
-<div class="typewriter" id="typewriter" style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); text-align: center;"><span id="typing-text"></span></div>
-<img alt="Frak pointing" class="frak-pointer" src="frak-pointing-down.png" style="width: 2* 1
-0px; margin: 90px auto -20px; display: block; top: 320px;"/>
+
+<div class="typewriter" id="typewriter" style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); text-align: center;">
+  <span id="typing-text"></span>
+</div>
+
+<img alt="Frak pointing" class="frak-pointer" src="frak-pointing-down.png" style="width: 90px; margin: 90px auto -10px; display: block;"/>
+
+<!-- ✅ 수정된 버튼 위치 (Frak pointing 바로 아래) -->
 <img alt="Enter" class="enter-image" id="enterBtn" src="enter-button.png" onclick="goToLoading()" />
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const target = document.getElementById("typing-text");
@@ -128,18 +127,18 @@ document.addEventListener("DOMContentLoaded", function () {
   typeLine(0);
 });
 </script>
-<script>
-  function goToLoading() {
-    document.body.style.opacity = '0';
-    setTimeout(function() {
-      window.location.href = 'loading.html';
-    }, 1000); // match transition duration
-  }
 
-  window.onload = function() {
-    document.body.style.transition = "opacity 1s";
-    document.body.style.opacity = "1";
-  };
+<script>
+function goToLoading() {
+  document.body.style.opacity = '0';
+  setTimeout(function() {
+    window.location.href = 'loading.html';
+  }, 1000);
+}
+window.onload = function() {
+  document.body.style.transition = "opacity 1s";
+  document.body.style.opacity = "1";
+};
 </script>
 
 </body>
