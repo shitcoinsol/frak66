@@ -1,6 +1,4 @@
-
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -8,100 +6,118 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="favicon.png" rel="icon" type="image/png"/>
 <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: url('background.png') center center / cover no-repeat fixed;
-      color: #e2d8c3;
-      font-family: 'Courier New', monospace;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      overflow: hidden;
-      cursor: url('frak-cursor.png'), auto;
-    }
-    .logo {
-      width: 240px;
-      position: absolute;
-      top: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      filter: drop-shadow(0 0 4px #4a3820);
-    }
+  body {
+    margin: 0;
+    padding: 0;
+    background: url('background.png') center center / cover no-repeat fixed;
+    color: #e2d8c3;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    cursor: url('frak-cursor.png'), auto;
+  }
+
+  .logo {
+    width: 240px;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 0 4px #4a3820);
+  }
+
+  .typewriter {
+    font-size: 1.25rem;
+    max-width: 90vw;
+    text-align: center;
+  }
+
+  .line {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #e2d8c3;
+    width: 0;
+    visibility: hidden;
+  }
+
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+
+  @keyframes blink {
+    50% { border-color: transparent; }
+  }
+
+  .enter-image {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%) scale(1);
+    margin-top: 70px;
+    width: 180px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: block;
+  }
+
+  .enter-image:hover {
+    transform: translateX(-50%) scale(1.05);
+    filter: none;
+  }
+
+  img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+
+  img.enter-image:hover {
+    filter: none;
+  }
+
+  .fade-out {
+    animation: fadeOut 0.5s ease forwards;
+  }
+
+  @keyframes fadeOut {
+    to { opacity: 0; }
+  }
+
+  @media (max-width: 600px) {
     .typewriter {
-      font-size: 1.25rem;
-      max-width: 90vw;
-      text-align: center;
-    }
-    .line {
-      display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 2px solid #e2d8c3;
-      width: 0;
-      visibility: hidden;
-    }
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-    @keyframes blink {
-      50% { border-color: transparent; }
+      font-size: 1rem;
+      line-height: 1.5;
     }
     .enter-image {
       position: absolute;
       top: 70%;
       left: 50%;
-      transform: translateX(-50%);
-
-      margin-top: 70px;
-      width: 180px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      display: block;
+      transform: translateX(-50%) scale(1);
+      width: 140px;
+      margin-top: 60px;
     }
+
     .enter-image:hover {
-      transform: scale(1.05);
-      filter: none;
+      transform: translateX(-50%) scale(1.05);
     }
-    img:hover {
-      transform: scale(1.05);
-      filter: brightness(1.2);
-      transition: transform 0.3s ease, filter 0.3s ease;
-    }
-    img.enter-image:hover {
-      filter: none;
-    }
-    .fade-out {
-      animation: fadeOut 0.5s ease forwards;
-    }
-    @keyframes fadeOut {
-      to { opacity: 0; }
-    }
-    @media (max-width: 600px) {
-      .typewriter {
-        font-size: 1rem;
-        line-height: 1.5;
-      }
-      .enter-image {
-      position: absolute;
-      top: 70%;
-      left: 50%;
-      transform: translateX(-50%);
-
-        width: 140px;
-        margin-top: 60px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
+
 <body>
-<img alt="frak logo" class="logo" src="frak-logo.png" style="position:absolute; top:30px; left:50%; transform:translateX(-50%);"/>
-<div class="typewriter" id="typewriter" style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); text-align: center;"><span id="typing-text"></span></div>
-<img alt="Frak pointing" class="frak-pointer" src="frak-pointing-down.png" style="width: 2* 90px; margin: 60px auto -20px; display: block;"/>
-<img alt="Enter" class="enter-image" id="enterBtn" src="enter-button.png" onclick="goToLoading()" onclick="goToLoading()">
+<img alt="frak logo" class="logo" src="frak-logo.png"/>
+<div class="typewriter" id="typewriter" style="position: absolute; top: 25%; left: 50%; transform: translateX(-50%); text-align: center;">
+  <span id="typing-text"></span>
+</div>
+<img alt="Frak pointing" class="frak-pointer" src="frak-pointing-down.png" style="width: 180px; margin: 60px auto -20px; display: block;"/>
+<img alt="Enter" class="enter-image" id="enterBtn" src="enter-button.png" onclick="goToLoading()"/>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const target = document.getElementById("typing-text");
@@ -130,19 +146,19 @@ document.addEventListener("DOMContentLoaded", function () {
   typeLine(0);
 });
 </script>
-</img>
-<script>
-  function goToLoading() {
-    document.body.style.opacity = '0';
-    setTimeout(function() {
-      window.location.href = 'loading.html';
-    }, 1000); // match transition duration
-  }
 
-  window.onload = function() {
-    document.body.style.transition = "opacity 1s";
-    document.body.style.opacity = "1";
-  };
+<script>
+function goToLoading() {
+  document.body.style.opacity = '0';
+  setTimeout(function() {
+    window.location.href = 'loading.html';
+  }, 1000);
+}
+
+window.onload = function() {
+  document.body.style.transition = "opacity 1s";
+  document.body.style.opacity = "1";
+};
 </script>
 
 </body>
