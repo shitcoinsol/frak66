@@ -26,16 +26,24 @@
     left: 50%;
     transform: translateX(-50%);
     filter: drop-shadow(0 0 4px #4a3820);
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  .logo:hover {
+    transform: translateX(-50%) scale(1.05);
+    filter: drop-shadow(0 0 6px #6c4e26) brightness(1.2);
+  }
+  .content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 80px;
   }
   .typewriter {
     font-size: 1.25rem;
     max-width: 40vw;
-    text-align: center;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
+    text-align: left;
+    min-height: 4.5em;
   }
   .line {
     display: block;
@@ -52,9 +60,17 @@
   @keyframes blink {
     50% { border-color: transparent; }
   }
+  .frak-pointer {
+    width: 180px;
+    display: block;
+  }
+  .enter-wrapper {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .enter-image {
-    position: relative;
-    margin-top: 40px;
     width: 180px;
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -77,9 +93,6 @@
   }
   @media (max-width: 600px) {
     .typewriter {
-      display: none;
-    }
-    .typewriter {
       font-size: 1rem;
       line-height: 1.5;
     }
@@ -87,9 +100,72 @@
       margin-top: 30px;
       width: 140px;
     }
+    .content-wrapper {
+      flex-direction: column;
+    }
   }
 </style>
 </head>
-<body><img alt="frak logo" class="logo" src="frak-logo.png" style="position:absolute; top:20px; left:50%; transform:translateX(-50%);"/><div class="typewriter" id="typewriter">
-  <span id="typing-text"></span>
-</div
+<body>
+
+<!-- ? frak logo -->
+<img alt="frak logo" class="logo" src="frak-logo.png" />
+
+<!-- ? 이미지 + 텍스트 나란히 -->
+<div class="content-wrapper">
+  <img alt="Frak pointing" class="frak-pointer" src="frak-pointing-down.png" />
+  <div class="typewriter" id="typewriter">
+    <span id="typing-text"></span>
+  </div>
+</div>
+
+<!-- ? 프락 이미지 기준 아래에 enter -->
+<div class="enter-wrapper">
+  <img alt="Enter" class="enter-image" id="enterBtn" src="enter-button.png" onclick="goToLoading()" />
+</div>
+
+<!-- ? 타이핑 효과 스크립트 -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const target = document.getElementById("typing-text");
+  const lines = [
+    "Frak is not here to pump.",
+    "Frak is not here to dump.",
+    "Frak is just... here."
+  ];
+  function typeLine(lineIndex) {
+    let charIndex = 0;
+    function typeChar() {
+      if (charIndex <= lines[lineIndex].length) {
+        target.innerHTML = lines.slice(0, lineIndex).join('<br>') + '<br>' + lines[lineIndex].slice(0, charIndex) + "|";
+        charIndex++;
+        setTimeout(typeChar, 50);
+      } else {
+        setTimeout(() => {
+          if (lineIndex + 1 < lines.length) typeLine(lineIndex + 1);
+          else target.innerHTML = lines.join('<br>');
+        }, 500);
+      }
+    }
+    typeChar();
+  }
+  typeLine(0);
+});
+</script>
+
+<!-- ? 로딩 페이지로 전환 -->
+<script>
+function goToLoading() {
+  document.body.style.opacity = '0';
+  setTimeout(function() {
+    window.location.href = 'loading.html';
+  }, 1000);
+}
+window.onload = function() {
+  document.body.style.transition = "opacity 1s";
+  document.body.style.opacity = "1";
+};
+</script>
+
+</body>
+</html>
