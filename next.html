@@ -14,11 +14,11 @@
       color: #e2d8c3;
       font-family: 'Courier New', monospace;
       overflow-x: hidden;
-      opacity: 0; /* ? 페이드인 시작 상태 */
-      transition: opacity 1s ease; /* ? 페이드인 트랜지션 */
+      opacity: 0;
+      transition: opacity 1s ease;
     }
     body.fade-in {
-      opacity: 1; /* ? 페이드인 완료 상태 */
+      opacity: 1;
     }
     .audio-btn {
       position: fixed;
@@ -203,8 +203,9 @@
   window.addEventListener("load", updateButtons);
 
   function copyCA() {
-    const text = document.getElementById("ca-text").innerText;
-    navigator.clipboard.writeText(text).then(() => {
+    const caSpan = document.getElementById("ca-text");
+    const fullCA = caSpan.getAttribute("data-full");
+    navigator.clipboard.writeText(fullCA).then(() => {
       alert("Contract address copied!");
     });
   }
@@ -231,7 +232,7 @@
     "<p><strong>Ticker:</strong> FRAK</p>",
     "<p><strong>Chain:</strong> Solana</p>",
     "<p><strong>Supply:</strong> 1,000,000,000</p>",
-    `<p class="ca-line"><strong>CA:</strong> <span id="ca-text">So1anaFakeAddress123456789</span> <button class="copy-btn" onclick="copyCA()">Copy</button></p>`
+    `<p class="ca-line"><strong>CA:</strong> <span id="ca-text" data-full="So1anaFakeAddress123456789">So1a...6789</span> <button class="copy-btn" onclick="copyCA()">Copy</button></p>`
   ];
 
   const tokenContainer = document.getElementById("token-text");
@@ -260,7 +261,6 @@
 
   typeLine();
 
-  // ? 페이지 로드 시 페이드인
   window.addEventListener("load", () => {
     document.body.classList.add("fade-in");
   });
